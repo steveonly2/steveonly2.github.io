@@ -91,26 +91,18 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>dSIM dSIM Donation Website</h1>
+        <h1>dSIM Donation Website</h1>
         <p>Click the buttons below and support us!</p>
 
-        <a href="https://www.roblox.com/game-pass/734460572/sui-yang" target="_blank" onclick="promptUsername(60); return false;">
-            <button class="gamepass-btn btn-60">Buy Gamepass for 60</button>
-        </a>
-        <a href="https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it" target="_blank" onclick="promptUsername(130); return false;">
-            <button class="gamepass-btn btn-130">Buy Gamepass for 130</button>
-        </a>
-        <a href="https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now" target="_blank" onclick="promptUsername(140); return false;">
-            <button class="gamepass-btn btn-140">Buy Gamepass for 140</button>
-        </a>
-        <a href="https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand" target="_blank" onclick="promptUsername(699); return false;">
-            <button class="gamepass-btn btn-699">Buy Gamepass for 699 ( love ya bro)</button>
-        </a>
+        <button class="gamepass-btn btn-60" onclick="promptUsername('https://www.roblox.com/game-pass/734460572/sui-yang', 60);">Buy Gamepass for 60</button>
+        <button class="gamepass-btn btn-130" onclick="promptUsername('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it', 130);">Buy Gamepass for 130</button>
+        <button class="gamepass-btn btn-140" onclick="promptUsername('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now', 140);">Buy Gamepass for 140</button>
+        <button class="gamepass-btn btn-699" onclick="promptUsername('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand', 699);">Buy Gamepass for 699</button>
     </div>
 
     <!-- JavaScript for Leaderboard -->
     <script>
-        function promptUsername(amount) {
+        function promptUsername(link, amount) {
             // Ask the user for their username
             const username = prompt("Please enter your username:");
 
@@ -128,6 +120,9 @@
                 const listItem = document.createElement('li');
                 listItem.innerText = username + ' donated ' + amount + ' Robux!';
                 donationList.appendChild(listItem);
+
+                // Open the gamepass link in a new tab
+                window.open(link, '_blank');
             }, 5000); // 5 second delay to simulate returning after donating
         }
     </script>
