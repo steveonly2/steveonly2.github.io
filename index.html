@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamepasses Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* Sidebar for Leaderboard */
+        .sidebar {
+            width: 300px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #ffcc00;
+        }
+
+        .leaderboard ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .leaderboard li {
+            background-color: #444;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 320px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        /* Gamepass buttons */
+        .gamepass-btn {
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 15px;
+            border-radius: 8px;
+        }
+
+        .btn-60 { background-color: #ff6347; color: #fff; }
+        .btn-130 { background-color: #4682b4; color: #fff; }
+        .btn-140 { background-color: #32cd32; color: #fff; }
+        .btn-699 { background-color: #8a2be2; color: #fff; }
+
+        .gamepass-btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar with Leaderboard -->
+    <div class="sidebar">
+        <h2>Top Donators</h2>
+        <div class="leaderboard">
+            <ul id="donationList">
+                <li>No donations yet!</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome to My Gamepasses Store</h1>
+        <p>Click the buttons below to purchase gamepasses and support me!</p>
+
+        <a href="https://www.roblox.com/game-pass/734460572/sui-yang" target="_blank" onclick="donation(60)"><button class="gamepass-btn btn-60">Buy Gamepass for 60</button></a>
+        <a href="https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it" target="_blank" onclick="donation(130)"><button class="gamepass-btn btn-130">Buy Gamepass for 130</button></a>
+        <a href="https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now" target="_blank" onclick="donation(140)"><button class="gamepass-btn btn-140">Buy Gamepass for 140</button></a>
+        <a href="https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand" target="_blank" onclick="donation(699)"><button class="gamepass-btn btn-699">Buy Gamepass for 699</button></a>
+    </div>
+
+    <!-- JavaScript for Leaderboard -->
+    <script>
+        function donation(amount) {
+            // Simulate the delay (5 seconds)
+            setTimeout(function () {
+                // Get the leaderboard element
+                const donationList = document.getElementById('donationList');
+
+                // Remove 'No donations yet!' if it exists
+                if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
+                    donationList.innerHTML = '';
+                }
+
+                // Add the donation to the leaderboard
+                const listItem = document.createElement('li');
+                listItem.innerText = 'Someone donated ' + amount + '!';
+                donationList.appendChild(listItem);
+
+                // You can also add logic to keep the highest donations at the top
+            }, 5000); // 5 second delay to simulate returning after donating
+        }
+    </script>
+
+</body>
+</html>
