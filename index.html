@@ -106,23 +106,21 @@
             // Open the gamepass link in a new tab
             window.open(link, '_blank');
 
-            // Ask the user for their username after a slight delay
-            setTimeout(function () {
-                const username = prompt("Please enter your username:");
+            // Immediately ask the user for their username
+            const username = prompt("Please enter your username:");
 
-                // Get the leaderboard element
-                const donationList = document.getElementById('donationList');
+            // Get the leaderboard element
+            const donationList = document.getElementById('donationList');
 
-                // Remove 'No donations yet!' if it exists
-                if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
-                    donationList.innerHTML = '';
-                }
+            // Remove 'No donations yet!' if it exists
+            if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
+                donationList.innerHTML = '';
+            }
 
-                // Add the username to the leaderboard
-                const listItem = document.createElement('li');
-                listItem.innerText = username + ' donated ' + amount + ' Robux!';
-                donationList.appendChild(listItem);
-            }, 2000); // Delay for 2 seconds before prompting for username
+            // Add the username to the leaderboard
+            const listItem = document.createElement('li');
+            listItem.innerText = username + ' donated ' + amount + ' Robux!';
+            donationList.appendChild(listItem);
         }
     </script>
 
