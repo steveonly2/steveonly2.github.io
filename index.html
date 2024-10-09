@@ -91,41 +91,44 @@
 
     <!-- Main Content -->
     <div class="main-content">
-        <h1>dSIM Donation Website</h1>
+        <h1>dSIM dSIM Donation Website</h1>
         <p>Click the buttons below and support us!</p>
 
-        <a href="https://www.roblox.com/game-pass/734460572/sui-yang" target="_blank" onclick="donation(60); return false;"><button class="gamepass-btn btn-60">Buy Gamepass for 60</button></a>
-        <a href="https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it" target="_blank" onclick="donation(130); return false;"><button class="gamepass-btn btn-130">Buy Gamepass for 130</button></a>
-        <a href="https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now" target="_blank" onclick="donation(140); return false;"><button class="gamepass-btn btn-140">Buy Gamepass for 140</button></a>
-        <a href="https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand" target="_blank" onclick="donation(699); return false;"><button class="gamepass-btn btn-699">Buy Gamepass for 699</button></a>
+        <a href="https://www.roblox.com/game-pass/734460572/sui-yang" target="_blank" onclick="promptUsername(60); return false;">
+            <button class="gamepass-btn btn-60">Buy Gamepass for 60</button>
+        </a>
+        <a href="https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it" target="_blank" onclick="promptUsername(130); return false;">
+            <button class="gamepass-btn btn-130">Buy Gamepass for 130</button>
+        </a>
+        <a href="https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now" target="_blank" onclick="promptUsername(140); return false;">
+            <button class="gamepass-btn btn-140">Buy Gamepass for 140</button>
+        </a>
+        <a href="https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand" target="_blank" onclick="promptUsername(699); return false;">
+            <button class="gamepass-btn btn-699">Buy Gamepass for 699 ( love ya bro)</button>
+        </a>
     </div>
 
     <!-- JavaScript for Leaderboard -->
     <script>
-        function donation(amount) {
-            // Ask if the user donated and get their username
-            const donated = confirm("Did you donate " + amount + " Robux?");
-            if (donated) {
-                const username = prompt("Please enter your username:");
+        function promptUsername(amount) {
+            // Ask the user for their username
+            const username = prompt("Please enter your username:");
 
-                // Simulate the delay (5 seconds)
-                setTimeout(function () {
-                    // Get the leaderboard element
-                    const donationList = document.getElementById('donationList');
+            // Simulate the delay (5 seconds)
+            setTimeout(function () {
+                // Get the leaderboard element
+                const donationList = document.getElementById('donationList');
 
-                    // Remove 'No donations yet!' if it exists
-                    if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
-                        donationList.innerHTML = '';
-                    }
+                // Remove 'No donations yet!' if it exists
+                if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
+                    donationList.innerHTML = '';
+                }
 
-                    // Add the donation to the leaderboard
-                    const listItem = document.createElement('li');
-                    listItem.innerText = username + ' donated ' + amount + ' Robux!';
-                    donationList.appendChild(listItem);
-                }, 5000); // 5 second delay to simulate returning after donating
-            } else {
-                alert("Thank you for your support regardless!");
-            }
+                // Add the username to the leaderboard
+                const listItem = document.createElement('li');
+                listItem.innerText = username + ' donated ' + amount + ' Robux!';
+                donationList.appendChild(listItem);
+            }, 5000); // 5 second delay to simulate returning after donating
         }
     </script>
 
