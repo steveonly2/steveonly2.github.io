@@ -6,10 +6,10 @@
     <title>dSIM Donation Website</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to right, #ffcc33, #66ccff);
             display: flex;
             flex-direction: row;
         }
@@ -40,6 +40,7 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
+            color: #ffcc33;
         }
 
         /* Main content area */
@@ -65,15 +66,32 @@
             cursor: pointer;
             margin: 15px;
             border-radius: 8px;
+            color: #fff;
         }
 
-        .btn-60 { background-color: #ff6347; color: #fff; }
-        .btn-130 { background-color: #4682b4; color: #fff; }
-        .btn-140 { background-color: #32cd32; color: #fff; }
-        .btn-699 { background-color: #8a2be2; color: #fff; }
+        .btn-60 { background-color: #ff6347; }
+        .btn-130 { background-color: #4682b4; }
+        .btn-140 { background-color: #32cd32; }
+        .btn-699 { background-color: #8a2be2; }
 
         .gamepass-btn:hover {
-            opacity: 0.8;
+            opacity: 0.9;
+        }
+
+        /* Download button */
+        .download-btn {
+            padding: 15px 25px;
+            font-size: 18px;
+            background-color: #ffcc00;
+            color: #333;
+            border: none;
+            cursor: pointer;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        .download-btn:hover {
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -98,31 +116,54 @@
         <button class="gamepass-btn btn-130" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it', 130);">Buy Gamepass for 130</button>
         <button class="gamepass-btn btn-140" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now', 140);">Buy Gamepass for 140</button>
         <button class="gamepass-btn btn-699" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand', 699);">Buy Gamepass for 699</button>
+
+        <!-- Download button for dSIM -->
+        <button class="download-btn" onclick="downloadDSIM()">Latest version of dSIM - Click here to download</button>
     </div>
 
-    <!-- JavaScript for Leaderboard -->
+    <!-- JavaScript for Leaderboard and Donation -->
     <script>
+        let donations = []; // Array to store all donations
+
         function redirectAndPrompt(link, amount) {
             // Open the gamepass link in a new tab
             window.open(link, '_blank');
 
-            // Immediately ask the user for their username
+            // Prompt user for their username
             const username = prompt("Please enter your username:");
 
-            // Get the leaderboard element
+            // Save the donation
+            saveDonation(username, amount);
+        }
+
+        function saveDonation(username, amount) {
+            // Add donation to the array
+            donations.push({ username, amount });
+
+            // Update the leaderboard
+            updateLeaderboard();
+        }
+
+        function updateLeaderboard() {
             const donationList = document.getElementById('donationList');
 
-            // Remove 'No donations yet!' if it exists
-            if (donationList.children.length === 1 && donationList.children[0].innerText === 'No donations yet!') {
-                donationList.innerHTML = '';
-            }
+            // Clear the existing leaderboard
+            donationList.innerHTML = '';
 
-            // Add the username to the leaderboard
-            const listItem = document.createElement('li');
-            listItem.innerText = username + ' donated ' + amount + ' Robux!';
-            donationList.appendChild(listItem);
+            // Populate the leaderboard with all donations
+            donations.forEach(donation => {
+                const listItem = document.createElement('li');
+                listItem.innerText = donation.username + ' donated ' + donation.amount + ' Robux!';
+                donationList.appendChild(listItem);
+            });
+        }
+
+        function downloadDSIM() {
+            // Trigger download of dSIM zip file
+            window.location.href = 'https://github.com/noteab/dolphSol-Improvement-Macro/releases/download/v1.4.1/dSIM.v1.4.1.release.zip';
         }
     </script>
 
 </body>
 </html>
+
