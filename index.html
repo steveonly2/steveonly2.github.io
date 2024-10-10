@@ -11,51 +11,18 @@
             padding: 0;
             background: linear-gradient(to right, #ffcc33, #66ccff);
             display: flex;
-            flex-direction: row;
-        }
-
-        /* Sidebar for Leaderboard */
-        .sidebar {
-            width: 300px;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            position: fixed;
-            height: 100%;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            color: #ffcc00;
-        }
-
-        .leaderboard ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .leaderboard li {
-            background-color: #444;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            color: #ffcc33;
-        }
-
-        /* Main content area */
-        .main-content {
-            margin-left: 320px;
-            padding: 40px;
-            text-align: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
             color: #333;
+            margin-top: 40px;
         }
 
         p {
             color: #666;
+            margin-bottom: 20px;
         }
 
         /* Gamepass buttons */
@@ -82,8 +49,8 @@
         .download-btn {
             padding: 15px 25px;
             font-size: 18px;
-            background-color: #ffcc00;
-            color: #333;
+            background-color: #007bff; /* Blue color */
+            color: #fff;
             border: none;
             cursor: pointer;
             margin-top: 40px;
@@ -93,69 +60,41 @@
         .download-btn:hover {
             opacity: 0.9;
         }
+
+        /* Section for Latest Version Text */
+        .latest-version-text {
+            margin-top: 40px;
+            font-size: 18px;
+            color: #333;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Sidebar with Leaderboard -->
-    <div class="sidebar">
-        <h2>Top Donators</h2>
-        <div class="leaderboard">
-            <ul id="donationList">
-                <li>No donations yet!</li>
-            </ul>
-        </div>
+    <h1>dSIM Donation Website</h1>
+    <p>Click the buttons below and support us!</p>
+
+    <!-- Donation buttons -->
+    <button class="gamepass-btn btn-60" onclick="redirect('https://www.roblox.com/game-pass/734460572/sui-yang');">Buy Gamepass for 60</button>
+    <button class="gamepass-btn btn-130" onclick="redirect('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it');">Buy Gamepass for 130</button>
+    <button class="gamepass-btn btn-140" onclick="redirect('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now');">Buy Gamepass for 140</button>
+    <button class="gamepass-btn btn-699" onclick="redirect('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand');">Buy Gamepass for 699</button>
+
+    <!-- Latest Version Text -->
+    <div class="latest-version-text">
+        <p><strong>LATEST VERSION OF dSIM 1.4.1</strong></p>
+        <p>Click the below button to download</p>
     </div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>dSIM Donation Website</h1>
-        <p>Click the buttons below and support us!</p>
+    <!-- Download button for dSIM -->
+    <button class="download-btn" onclick="downloadDSIM()">Latest version of dSIM - Click here to download</button>
 
-        <button class="gamepass-btn btn-60" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/734460572/sui-yang', 60);">Buy Gamepass for 60</button>
-        <button class="gamepass-btn btn-130" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it', 130);">Buy Gamepass for 130</button>
-        <button class="gamepass-btn btn-140" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now', 140);">Buy Gamepass for 140</button>
-        <button class="gamepass-btn btn-699" onclick="redirectAndPrompt('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand', 699);">Buy Gamepass for 699</button>
-
-        <!-- Download button for dSIM -->
-        <button class="download-btn" onclick="downloadDSIM()">Latest version of dSIM - Click here to download</button>
-    </div>
-
-    <!-- JavaScript for Leaderboard and Donation -->
+    <!-- JavaScript for Redirection and Download -->
     <script>
-        let donations = []; // Array to store all donations
-
-        function redirectAndPrompt(link, amount) {
-            // Open the gamepass link in a new tab
+        function redirect(link) {
+            // Redirect to the gamepass link in a new tab
             window.open(link, '_blank');
-
-            // Prompt user for their username
-            const username = prompt("Please enter your username:");
-
-            // Save the donation
-            saveDonation(username, amount);
-        }
-
-        function saveDonation(username, amount) {
-            // Add donation to the array
-            donations.push({ username, amount });
-
-            // Update the leaderboard
-            updateLeaderboard();
-        }
-
-        function updateLeaderboard() {
-            const donationList = document.getElementById('donationList');
-
-            // Clear the existing leaderboard
-            donationList.innerHTML = '';
-
-            // Populate the leaderboard with all donations
-            donations.forEach(donation => {
-                const listItem = document.createElement('li');
-                listItem.innerText = donation.username + ' donated ' + donation.amount + ' Robux!';
-                donationList.appendChild(listItem);
-            });
         }
 
         function downloadDSIM() {
@@ -166,4 +105,3 @@
 
 </body>
 </html>
-
