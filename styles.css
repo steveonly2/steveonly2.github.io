@@ -13,10 +13,11 @@ body.dark-mode {
 }
 
 /* Basic styling for buttons and layout */
-.buttons {
+.buttons, #donationOptions {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 button {
@@ -30,16 +31,12 @@ button {
     background-color: blue;
     color: white;
 }
-#donateBtn {
+.donation-btn {
     background-color: green;
     color: white;
 }
-#patchesBtn {
-    background-color: red;
-    color: white;
-}
 
-/* Hidden class for settings menu */
+/* Hidden class for settings menu and donation options */
 .hidden {
     display: none;
 }
@@ -57,4 +54,3 @@ button {
     padding: 20px;
     background-color: #f0f0f0;
 }
-
