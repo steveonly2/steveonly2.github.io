@@ -1,1 +1,60 @@
+/* Default light mode styling */
+body.light-mode {
+    background-image: url('aesthetic-background.jpg'); /* Replace with an actual image */
+    background-size: cover;
+    color: black;
+}
+
+/* Dark mode styling */
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+    background-image: none; /* Disable aesthetic background in dark mode */
+}
+
+/* Basic styling for buttons and layout */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+/* Color for the buttons */
+#downloadBtn {
+    background-color: blue;
+    color: white;
+}
+#donateBtn {
+    background-color: green;
+    color: white;
+}
+#patchesBtn {
+    background-color: red;
+    color: white;
+}
+
+/* Hidden class for settings menu */
+.hidden {
+    display: none;
+}
+
+/* Settings and Discord Button Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* Styling for the extra information at the bottom */
+.info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
 
