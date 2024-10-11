@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -71,11 +71,16 @@
             background-color: #121212;
         }
 
-        /* Settings button */
-        .settings-btn {
+        /* Settings and Discord buttons */
+        .top-buttons {
             position: absolute;
             top: 20px;
             right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .settings-btn, .discord-btn {
             background-color: #888;
             color: white;
             border: none;
@@ -84,7 +89,7 @@
             cursor: pointer;
         }
 
-        .settings-btn:hover {
+        .settings-btn:hover, .discord-btn:hover {
             background-color: #666;
         }
 
@@ -108,8 +113,11 @@
 </head>
 <body>
 
-    <!-- Settings button for dark mode -->
-    <button class="settings-btn" onclick="toggleDarkMode()">Settings</button>
+    <!-- Top buttons: Settings and Discord -->
+    <div class="top-buttons">
+        <button class="settings-btn" onclick="toggleDarkMode()">Settings</button>
+        <button class="discord-btn" onclick="openDiscord()">Discord</button>
+    </div>
 
     <h1>dSIM Official Website</h1>
     <p>Please choose one of the options below:</p>
@@ -117,7 +125,7 @@
     <!-- Button options -->
     <div class="button-container">
         <button class="option-btn btn-download" onclick="showDownload()">Latest Download</button>
-        <button class="option-btn btn-donate" onclick="showDonations()">Donating Options To Recieve Donator Role</button>
+        <button class="option-btn btn-donate" onclick="showDonations()">Donating Options</button>
         <button class="option-btn btn-patches" onclick="showPatches()">Latest Patches</button>
     </div>
 
@@ -167,7 +175,7 @@
         </p>
     </div>
 
-    <!-- JavaScript for Redirection, Dynamic Content, and Dark Mode -->
+    <!-- JavaScript for Redirection, Dynamic Content, Dark Mode, and Discord Button -->
     <script>
         function showDownload() {
             hideAllSections();
@@ -202,6 +210,10 @@
 
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
+        }
+
+        function openDiscord() {
+            window.open('https://discord.gg/dsim', '_blank');
         }
     </script>
 
