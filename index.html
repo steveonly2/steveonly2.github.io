@@ -15,6 +15,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            transition: background-color 0.3s ease;
         }
 
         h1 {
@@ -64,9 +65,51 @@
             padding: 20px;
             border-radius: 10px;
         }
+
+        /* Dark mode background */
+        .dark-mode {
+            background-color: #121212;
+        }
+
+        /* Settings button */
+        .settings-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #888;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .settings-btn:hover {
+            background-color: #666;
+        }
+
+        /* Info section */
+        .info-section {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .info-section a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Settings button for dark mode -->
+    <button class="settings-btn" onclick="toggleDarkMode()">Settings</button>
 
     <h1>dSIM Official Website</h1>
     <p>Please choose one of the options below:</p>
@@ -74,7 +117,7 @@
     <!-- Button options -->
     <div class="button-container">
         <button class="option-btn btn-download" onclick="showDownload()">Latest Download</button>
-        <button class="option-btn btn-donate" onclick="showDonations()">Donating Options</button>
+        <button class="option-btn btn-donate" onclick="showDonations()">Donating Options To Recieve Donator Role</button>
         <button class="option-btn btn-patches" onclick="showPatches()">Latest Patches</button>
     </div>
 
@@ -95,7 +138,7 @@
             <strong>CURRENT 1.4.1 PATCHES</strong><br><br>
             ***# ==__ V1.4.1 UPDATES __==***<br>
             > *This updates include have some main changes/fixes which:*<br>
-            * ⭐ **Jester exchange system** ***(TESTING PHASE)*** <a:warning2:1121429470386069675> (Please use with caution)<br>
+            * ⭐ **Jester exchange system** ***(TESTING PHASE)*** <br>
             * ⭐ **Glitch Biome exclusive Discord User ID/Role ID whenever detected** <br>
             * ⭐ **More merchant guides added** (helpful info like tutorial, faqs)<br>
             * ⭐ **Merchant Item Slots Revamped** <br>
@@ -113,7 +156,18 @@
         </div>
     </div>
 
-    <!-- JavaScript for Redirection and Dynamic Content -->
+    <!-- Basic Information Section -->
+    <div class="info-section">
+        <h2>dSIM Basic Information</h2>
+        <p>
+            Our Official server is <a href="https://discord.gg/dsim" target="_blank">discord.gg/dsim</a>. For all your queries related to dSIM, refer to the server.
+            We are a developer team of 8, working on this project as a passion to keep everyone happy. Updates take time sometimes and sometimes will be within a week or so.
+            For more information, visit our GitHub: <a href="https://github.com/noteab/dolphSol-Improvement-Macro/tree/Noteab-Improvement" target="_blank">GitHub Link</a><br>
+            <strong>Thanks for all the support!</strong>
+        </p>
+    </div>
+
+    <!-- JavaScript for Redirection, Dynamic Content, and Dark Mode -->
     <script>
         function showDownload() {
             hideAllSections();
@@ -144,6 +198,10 @@
         function downloadDSIM() {
             // Trigger download of dSIM zip file
             window.location.href = 'https://github.com/noteab/dolphSol-Improvement-Macro/releases/download/v1.4.1/dSIM.v1.4.1.release.zip';
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
         }
     </script>
 
