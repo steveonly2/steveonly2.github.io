@@ -1,56 +1,53 @@
-/* Default light mode styling */
-body.light-mode {
-    background-image: url('aesthetic-background.jpg'); /* Replace with an actual image */
-    background-size: cover;
-    color: black;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light background */
+    color: #333;
+    transition: background-color 0.3s ease;
 }
 
-/* Dark mode styling */
-body.dark-mode {
-    background-color: #121212;
-    color: white;
-    background-image: none; /* Disable aesthetic background in dark mode */
-}
-
-/* Basic styling for buttons and layout */
-.buttons, #donationOptions {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-}
-
-/* Color for the buttons */
-#downloadBtn {
-    background-color: blue;
-    color: white;
-}
-.donation-btn {
-    background-color: green;
-    color: white;
-}
-
-/* Hidden class for settings menu and donation options */
-.hidden {
-    display: none;
-}
-
-/* Settings and Discord Button Styling */
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-/* Styling for the extra information at the bottom */
-.info {
-    margin-top: 30px;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f0f0f0;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.color-button {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.color-button:hover {
+    opacity: 0.8; /* Button hover effect */
+}
+
+/* Individual button colors */
+#latest-download { background-color: #3498db; } /* Blue */
+#donating-options { background-color: #e74c3c; } /* Red */
+#latest-patches { background-color: #2ecc71; } /* Green */
+.settings-button { background-color: #f39c12; } /* Orange */
+
+.info {
+    margin-top: 20px;
+}
+
+.dark-mode {
+    background-color: #2c3e50; /* Dark background */
+    color: #ecf0f1; /* Light text */
 }
