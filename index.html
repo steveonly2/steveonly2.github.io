@@ -3,97 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dSIM Donation Website</title>
+    <title>dSIM Official Website</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #ffcc33, #66ccff);
+            background-color: #f0f0f0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         h1 {
             color: #333;
-            margin-top: 40px;
+            margin-bottom: 40px;
         }
 
-        p {
-            color: #666;
-            margin-bottom: 20px;
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 50px;
         }
 
-        /* Gamepass buttons */
-        .gamepass-btn {
-            padding: 15px 25px;
-            font-size: 18px;
+        /* General button styles */
+        .option-btn {
+            padding: 20px 40px;
+            font-size: 20px;
             border: none;
+            border-radius: 10px;
             cursor: pointer;
-            margin: 15px;
-            border-radius: 8px;
-            color: #fff;
+            color: white;
+            text-align: center;
+            transition: 0.3s ease;
         }
 
-        .btn-60 { background-color: #ff6347; }
-        .btn-130 { background-color: #4682b4; }
-        .btn-140 { background-color: #32cd32; }
-        .btn-699 { background-color: #8a2be2; }
+        /* Unique button colors */
+        .btn-download { background-color: #007bff; }  /* Blue */
+        .btn-donate { background-color: #28a745; }    /* Green */
+        .btn-patches { background-color: #ff6347; }   /* Red */
 
-        .gamepass-btn:hover {
+        .option-btn:hover {
             opacity: 0.9;
         }
 
-        /* Download button */
-        .download-btn {
-            padding: 15px 25px;
-            font-size: 18px;
-            background-color: #007bff; /* Blue color */
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-top: 40px;
-            border-radius: 8px;
+        /* Hidden content for dynamic sections */
+        .content-section {
+            display: none;
+            margin-top: 30px;
+            max-width: 800px;
         }
 
-        .download-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Section for Latest Version Text */
-        .latest-version-text {
-            margin-top: 40px;
-            font-size: 18px;
+        .patches {
+            font-size: 16px;
+            line-height: 1.6;
             color: #333;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
         }
-
     </style>
 </head>
 <body>
 
-    <h1>dSIM Donation Website</h1>
-    <p>Click the buttons below and support us!</p>
+    <h1>dSIM Official Website</h1>
+    <p>Please choose one of the options below:</p>
 
-    <!-- Donation buttons -->
-    <button class="gamepass-btn btn-60" onclick="redirect('https://www.roblox.com/game-pass/734460572/sui-yang');">Buy Gamepass for 60</button>
-    <button class="gamepass-btn btn-130" onclick="redirect('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it');">Buy Gamepass for 130</button>
-    <button class="gamepass-btn btn-140" onclick="redirect('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now');">Buy Gamepass for 140</button>
-    <button class="gamepass-btn btn-699" onclick="redirect('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand');">Buy Gamepass for 699</button>
-
-    <!-- Latest Version Text -->
-    <div class="latest-version-text">
-        <p><strong>LATEST VERSION OF dSIM 1.4.1</strong></p>
-        <p>Click the below button to download</p>
+    <!-- Button options -->
+    <div class="button-container">
+        <button class="option-btn btn-download" onclick="showDownload()">Latest Download</button>
+        <button class="option-btn btn-donate" onclick="showDonations()">Donating Options</button>
+        <button class="option-btn btn-patches" onclick="showPatches()">Latest Patches</button>
     </div>
 
-    <!-- Download button for dSIM -->
-    <button class="download-btn" onclick="downloadDSIM()">Latest version of dSIM - Click here to download</button>
+    <!-- Sections for dynamic content -->
+    <div id="download-section" class="content-section">
+        <button class="option-btn btn-download" onclick="downloadDSIM()">Download dSIM v1.4.1</button>
+    </div>
 
-    <!-- JavaScript for Redirection and Download -->
+    <div id="donation-section" class="content-section">
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/734460572/sui-yang')">Buy Gamepass for 60</button>
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it')">Buy Gamepass for 130</button>
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now')">Buy Gamepass for 140</button>
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand')">Buy Gamepass for 699</button>
+    </div>
+
+    <div id="patches-section" class="content-section">
+        <div class="patches">
+            <strong>CURRENT 1.4.1 PATCHES</strong><br><br>
+            ***# ==__ V1.4.1 UPDATES __==***<br>
+            > *This updates include have some main changes/fixes which:*<br>
+            * ⭐ **Jester exchange system** ***(TESTING PHASE)*** <a:warning2:1121429470386069675> (Please use with caution)<br>
+            * ⭐ **Glitch Biome exclusive Discord User ID/Role ID whenever detected** <br>
+            * ⭐ **More merchant guides added** (helpful info like tutorial, faqs)<br>
+            * ⭐ **Merchant Item Slots Revamped** <br>
+            * 🔨** [Bug-Fix] Merchant PS link keeps disappearing after reopen**<br>
+            * 🔨** [Bug-Fix] Auto Roll issue fixed**<br>
+            * 🔨** [Bug-Fix] Auto close Jake's shop warning**<br>
+            * 🔨** [Bug-Fix] Public server rejoin improvements**<br><br>
+
+            **UPCOMING FEATURES**<br>
+            + Arcane Path 🏃‍♂️<br>
+            + Macro Summary 📜<br>
+            + 🌟 More community features coming soon 🌟<br><br>
+
+            **INSTALLATION**: Download the latest version ***v1.4.1*** <a href="https://github.com/noteab/dolphSol-Improvement-Macro/releases/tag/v1.4.1">here</a>
+        </div>
+    </div>
+
+    <!-- JavaScript for Redirection and Dynamic Content -->
     <script>
+        function showDownload() {
+            hideAllSections();
+            document.getElementById('download-section').style.display = 'block';
+        }
+
+        function showDonations() {
+            hideAllSections();
+            document.getElementById('donation-section').style.display = 'block';
+        }
+
+        function showPatches() {
+            hideAllSections();
+            document.getElementById('patches-section').style.display = 'block';
+        }
+
+        function hideAllSections() {
+            document.getElementById('download-section').style.display = 'none';
+            document.getElementById('donation-section').style.display = 'none';
+            document.getElementById('patches-section').style.display = 'none';
+        }
+
         function redirect(link) {
-            // Redirect to the gamepass link in a new tab
+            // Redirect to the gamepass link
             window.open(link, '_blank');
         }
 
