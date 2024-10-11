@@ -109,6 +109,20 @@
         .info-section a:hover {
             text-decoration: underline;
         }
+
+        /* Donation options */
+        .donation-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .min-amount {
+            font-size: 24px;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -134,12 +148,11 @@
         <button class="option-btn btn-download" onclick="downloadDSIM()">Download dSIM v1.4.1</button>
     </div>
 
-    <div id="donation-section" class="content-section">
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/734460572/sui-yang')">Buy Gamepass for 60</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it')">Buy Gamepass for 130</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/941894354/you-get-my-respect-role-now')">Buy Gamepass for 140</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/802319916/nah-bro-ur-rich-i-understand')">Buy Gamepass for 699</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/game-pass/942606771/appreciate-it')">Buy Gamepass for 200 ty</button>
+    <div id="donation-section" class="content-section donation-options">
+        <p class="min-amount">MINIMUM AMOUNT IS 100</p>
+        <button class="option-btn btn-donate" onclick="showStore('noteab')">Noteab's Store (Coming Soon)</button>
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/9599429976/Donate-Me-New#!/store')">Steve's Store</button>
+        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/5080477735/Donations-to-Curious-Pengu#!/store')">Pengu's Store</button>
     </div>
 
     <div id="patches-section" class="content-section">
@@ -216,8 +229,13 @@
         function openDiscord() {
             window.open('https://discord.gg/dsim', '_blank');
         }
+
+        function showStore(store) {
+            if (store === 'noteab') {
+                alert("Noteab's Store is coming soon.");
+            }
+        }
     </script>
 
 </body>
 </html>
-
