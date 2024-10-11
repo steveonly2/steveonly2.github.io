@@ -110,18 +110,18 @@
             text-decoration: underline;
         }
 
-        /* Donation options */
-        .donation-options {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        /* Store Options */
+        .store-options {
+            font-size: 18px;
+            margin-bottom: 30px;
         }
 
-        .min-amount {
-            font-size: 24px;
+        /* Minimum amount message */
+        .min-amount-message {
+            font-size: 22px;
             color: red;
             font-weight: bold;
-            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -131,7 +131,7 @@
     <div class="top-buttons">
         <button class="settings-btn" onclick="toggleDarkMode()">Settings</button>
         <button class="discord-btn" onclick="openDiscord()">Discord</button>
-        <button class="donation-btn" onclick="showDonations()">Donations</button>
+        <button class="donation-btn" onclick="showDonationOptions()">Donations</button>
     </div>
     
     <h1>dSIM Official Website</h1>
@@ -146,13 +146,6 @@
     <!-- Sections for dynamic content -->
     <div id="download-section" class="content-section">
         <button class="option-btn btn-download" onclick="downloadDSIM()">Download dSIM v1.4.1</button>
-    </div>
-
-    <div id="donation-section" class="content-section donation-options">
-        <p class="min-amount">MINIMUM AMOUNT IS 100</p>
-        <button class="option-btn btn-donate" onclick="showStore('noteab')">Noteab's Store (Coming Soon)</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/9599429976/Donate-Me-New#!/store')">Steve's Store</button>
-        <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/5080477735/Donations-to-Curious-Pengu#!/store')">Pengu's Store</button>
     </div>
 
     <div id="patches-section" class="content-section">
@@ -178,6 +171,15 @@
         </div>
     </div>
 
+    <!-- Donation Options -->
+    <div id="donation-section" class="content-section">
+        <div class="store-options">
+            <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/9599429976/Donate-Me-New#!/store')">Steve's Store</button>
+            <button class="option-btn btn-donate" onclick="redirect('https://www.roblox.com/games/5080477735/Donations-to-Curious-Pengu#!/store')">Curious Pengu's Store</button>
+        </div>
+        <div class="min-amount-message">all donos are appreciated</div>
+    </div>
+
     <!-- Basic Information Section -->
     <div class="info-section">
         <h2>dSIM Basic Information</h2>
@@ -196,14 +198,14 @@
             document.getElementById('download-section').style.display = 'block';
         }
 
-        function showDonations() {
-            hideAllSections();
-            document.getElementById('donation-section').style.display = 'block';
-        }
-
         function showPatches() {
             hideAllSections();
             document.getElementById('patches-section').style.display = 'block';
+        }
+
+        function showDonationOptions() {
+            hideAllSections();
+            document.getElementById('donation-section').style.display = 'block';
         }
 
         function hideAllSections() {
@@ -213,7 +215,7 @@
         }
 
         function redirect(link) {
-            // Redirect to the gamepass link
+            // Redirect to the store link
             window.open(link, '_blank');
         }
 
@@ -228,12 +230,6 @@
 
         function openDiscord() {
             window.open('https://discord.gg/dsim', '_blank');
-        }
-
-        function showStore(store) {
-            if (store === 'noteab') {
-                alert("Noteab's Store is coming soon.");
-            }
         }
     </script>
 
