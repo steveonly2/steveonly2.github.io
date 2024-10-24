@@ -11,10 +11,11 @@
             background-color: #f0f0f0;
             margin: 0;
             padding: 50px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
         h1 {
             color: #333;
+            transition: color 0.3s;
         }
         button {
             margin: 10px;
@@ -42,7 +43,11 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #17a2b8; /* Teal */
+            background-color: transparent;
+            font-size: 24px; /* Size for the icon */
+            color: #17a2b8; /* Teal */
+            border: none;
+            cursor: pointer;
         }
         .hidden {
             display: none;
@@ -52,6 +57,9 @@
             background-color: #333;
             color: #fff;
         }
+        .dark-mode h1 {
+            color: #007bff; /* Blue */
+        }
     </style>
 </head>
 <body>
@@ -59,7 +67,7 @@
     <button id="downloadButton" onclick="showDownload()">Latest Download</button>
     <button id="githubButton" onclick="window.open('https://github.com/steveonly2/SaiGO', '_blank')">GitHub</button>
     <button id="supportButton" onclick="showSupport()">Support Us!</button>
-    <button id="settingsButton" onclick="toggleDarkMode()">Settings</button>
+    <button id="settingsButton" onclick="toggleDarkMode()">⚙️</button> <!-- Settings icon -->
 
     <div id="downloadSection" class="hidden">
         <button onclick="window.open('https://github.com/steveonly2/SaiGO/releases/download/v1.3.5-NEW/Saiglon.v1.3.5.zip', '_blank')">Download Saiglon 1.3.5</button>
@@ -86,17 +94,11 @@
             darkModeEnabled = !darkModeEnabled;
             document.body.classList.toggle('dark-mode', darkModeEnabled);
 
-            // Change button colors if dark mode is not enabled
-            if (!darkModeEnabled) {
-                document.getElementById('downloadButton').style.backgroundColor = '#007bff'; // Blue
-                document.getElementById('githubButton').style.backgroundColor = '#28a745'; // Green
-                document.getElementById('supportButton').style.backgroundColor = '#dc3545'; // Red
-                document.getElementById('settingsButton').style.backgroundColor = '#17a2b8'; // Teal
+            // Change text color to blue in dark mode
+            if (darkModeEnabled) {
+                document.getElementById('settingsButton').style.color = '#007bff'; // Blue for icon
             } else {
-                document.getElementById('downloadButton').style.backgroundColor = '#0056b3'; // Darker Blue
-                document.getElementById('githubButton').style.backgroundColor = '#218838'; // Darker Green
-                document.getElementById('supportButton').style.backgroundColor = '#c82333'; // Darker Red
-                document.getElementById('settingsButton').style.backgroundColor = '#138496'; // Darker Teal
+                document.getElementById('settingsButton').style.color = '#17a2b8'; // Teal for icon
             }
         }
     </script>
