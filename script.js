@@ -47,11 +47,11 @@ document.getElementById("mysteryInput").addEventListener("keypress", function(ev
     if (event.key === "Enter") {
         event.preventDefault();
         
-        let inputText = this.value.trim();
+        let inputText = this.value.trim().toLowerCase(); // Convert input to lowercase
         let responseDiv = document.getElementById("response");
         responseDiv.style.opacity = "1"; // Ensure it's visible
 
-        if (inputText.toLowerCase() === "mnemos") {
+        if (inputText === "mnemos") {
             responseDiv.innerText = "Redirecting...";
             setTimeout(() => {
                 window.location.href = "https://www.youtube.com/watch?v=vRDWpI5lmFk&list=PLrHNvh0ZGPqIMpz2OWJQhfzHGlq0ClGdl";
@@ -67,4 +67,5 @@ document.getElementById("mysteryInput").addEventListener("keypress", function(ev
         this.value = ""; // Clear input after pressing Enter
     }
 });
+
 
