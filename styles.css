@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Herlines';
+    src: url('Herlines.ttf') format('truetype'); /* Ensure this file is uploaded */
+}
+
+@font-face {
+    font-family: 'Ethikma';
+    src: url('Ethikma.ttf') format('truetype'); /* Ensure this file is uploaded */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -6,10 +16,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('phantasmal.png'); /* Set your background image */
+    background-image: url('phantasmal.png');
     background-size: cover;
     background-position: center;
     overflow: hidden;
+    position: relative;
 }
 
 h1 {
@@ -19,12 +30,17 @@ h1 {
     transform: translateX(-50%);
     font-size: 3em;
     color: white;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Ethikma', sans-serif;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 .text {
     position: absolute;
     font-size: 1.5em;
+    font-family: 'Herlines', sans-serif;
     color: rgba(255, 255, 255, 0.8);
-    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    white-space: nowrap;
+    opacity: 0.8;
+    transition: transform 0.5s ease;
 }
