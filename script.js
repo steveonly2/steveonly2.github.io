@@ -41,3 +41,13 @@ window.onload = () => {
         createRandomText();
     }
 };
+
+// Input field response
+document.getElementById("mysteryInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("response").innerText = 
+            "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
+        this.value = ""; // Clear input after pressing Enter
+    }
+});
