@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('phantasmal.png');
+    background-image: url('phantasmal.webp');
     background-size: cover;
     background-position: center;
     overflow: hidden;
