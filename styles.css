@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Ethikma';
-     src: url('Phantasmal-Regular.woff2') format('woff2'); /* Using the compressed font */
+    font-family: 'Phantasmal';
+    src: url('Phantasmal-Regular.woff2') format('woff2'); /* Using the compressed font */
 }
 
 body {
@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('phantasmal.webp');
+    background-image: url('phantasmal.webp'); /* Optimized background */
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -25,17 +25,52 @@ h1 {
     transform: translateX(-50%);
     font-size: 3em;
     color: white;
-    font-family: 'Ethikma', sans-serif;
+    font-family: 'Phantasmal', sans-serif;
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
 }
 
 .text {
     position: absolute;
     font-size: 1.5em;
-    font-family: 'Ethikma', sans-serif;
+    font-family: 'Phantasmal', sans-serif;
     color: rgba(255, 255, 255, 0.8);
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     white-space: nowrap;
     opacity: 0.8;
     transition: transform 0.5s ease;
+}
+
+/* Input Bar */
+#mysteryInput {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    padding: 10px;
+    font-size: 1.2em;
+    font-family: 'Phantasmal', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+#mysteryInput:focus {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Response Text */
+#response {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    font-family: 'Phantasmal', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
