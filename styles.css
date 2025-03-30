@@ -64,13 +64,16 @@ h1 {
 }
 
 /* Response Text */
+/* Response Text - Clearly visible */
 #response {
     position: absolute;
     bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-family: 'Phantasmal', sans-serif;
-    color: rgba(255, 255, 255, 0.8);
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 1); /* Full white */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    transition: opacity 0.5s ease-in-out;
 }
+
