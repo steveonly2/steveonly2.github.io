@@ -48,6 +48,7 @@ document.getElementById("mysteryInput").addEventListener("keypress", function(ev
         event.preventDefault();
         
         let responseDiv = document.getElementById("response");
+        responseDiv.style.opacity = "1"; // Ensure it's visible
         responseDiv.innerText = "Thinking.."; // Show "Thinking.." first
 
         setTimeout(() => {
