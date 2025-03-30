@@ -46,8 +46,16 @@ window.onload = () => {
 document.getElementById("mysteryInput").addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("response").innerText = 
-            "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
+        
+        let responseDiv = document.getElementById("response");
+        responseDiv.innerText = "Thinking.."; // Show "Thinking.." first
+
+        setTimeout(() => {
+            responseDiv.innerText = 
+                "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
+        }, 2000); // Replace with binary after 2 seconds
+
         this.value = ""; // Clear input after pressing Enter
     }
 });
+
