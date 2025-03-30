@@ -47,14 +47,22 @@ document.getElementById("mysteryInput").addEventListener("keypress", function(ev
     if (event.key === "Enter") {
         event.preventDefault();
         
+        let inputText = this.value.trim();
         let responseDiv = document.getElementById("response");
         responseDiv.style.opacity = "1"; // Ensure it's visible
-        responseDiv.innerText = "Thinking.."; // Show "Thinking.." first
 
-        setTimeout(() => {
-            responseDiv.innerText = 
-                "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
-        }, 2000); // Replace with binary after 2 seconds
+        if (inputText.toLowerCase() === "mnemos") {
+            responseDiv.innerText = "Redirecting...";
+            setTimeout(() => {
+                window.location.href = "https://www.youtube.com/watch?v=vRDWpI5lmFk&list=PLrHNvh0ZGPqIMpz2OWJQhfzHGlq0ClGdl";
+            }, 2000);
+        } else {
+            responseDiv.innerText = "Thinking..";
+            setTimeout(() => {
+                responseDiv.innerText = 
+                    "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
+            }, 2000);
+        }
 
         this.value = ""; // Clear input after pressing Enter
     }
