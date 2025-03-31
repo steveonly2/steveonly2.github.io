@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const responseArea = document.getElementById('response');
     const body = document.body;
     const floatingText = document.getElementById('floating-text');
+    const mainContent = document.getElementById('main-content');
+    const horrorMessage = document.getElementById('horror-message');
 
     // Create floating text elements
     function createFloatingText() {
-        const texts = ["who am i?", "what am i?"];
-        const delay = Math.random() * 10000;
+        const texts = ["who am i?", "what am i?", "where am i?"];
+        const delay = Math.random() * 5000;
         
         setTimeout(() => {
             const textElement = document.createElement('div');
@@ -16,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
             textElement.style.left = Math.random() * 100 + 'vw';
             textElement.style.top = Math.random() * 100 + 'vh';
             textElement.style.animationDuration = (10 + Math.random() * 20) + 's';
-            textElement.style.fontSize = (1 + Math.random() * 2) + 'rem';
-            textElement.style.opacity = Math.random() * 0.3;
+            textElement.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
+            textElement.style.opacity = 0.3 + Math.random() * 0.2;
             floatingText.appendChild(textElement);
             
             // Remove element after animation completes
@@ -33,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start creating floating text
     createFloatingText();
 
-    // Rest of your existing code...
     inputField.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             const userInput = inputField.value.trim();
@@ -66,26 +67,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function triggerHorrorSequence() {
-        // Shake the website
-        body.classList.add('shake');
+        // Violently shake the website
+        body.classList.add('violent-shake');
         
-        // Change background to white after shake
+        // After 2 seconds of shaking, remove everything and show horror message
         setTimeout(() => {
-            body.style.background = 'white';
-            body.classList.remove('shake');
+            // Remove all content
+            mainContent.style.display = 'none';
+            floatingText.style.display = 'none';
             
-            // Type horror message
-            responseArea.innerHTML = '<p class="horror-text"></p>';
-            const horrorText = responseArea.querySelector('.horror-text');
+            // Show horror message
+            horrorMessage.style.display = 'flex';
+            horrorMessage.innerHTML = '<p class="horror-text"></p>';
+            const horrorText = horrorMessage.querySelector('.horror-text');
             const message = "How Did You Get My Name...";
             let i = 0;
             
+            // Type out the message
             const typing = setInterval(() => {
                 if (i < message.length) {
                     horrorText.textContent += message.charAt(i);
                     i++;
                 } else {
                     clearInterval(typing);
+                    body.classList.remove('violent-shake');
                     
                     // Redirect after delay
                     setTimeout(() => {
@@ -93,6 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, 2000);
                 }
             }, 100);
-        }, 500);
+        }, 2000);
     }
 });
