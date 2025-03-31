@@ -2,12 +2,10 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image: url('phantasmal.webp');
+    background: url('Phantasmal.webp') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     font-family: 'Phantasmal', sans-serif;
-    color: #e0e0e0;
+    color: #ff0000; /* Blood red text color */
     overflow: hidden;
     transition: all 0.5s ease;
 }
