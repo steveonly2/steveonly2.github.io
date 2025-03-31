@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phantasmal</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @font-face {
+            font-family: 'Phantasmal';
+            src: url('Phantasmal-Regular.woff2') format('woff2');
+        }
+    </style>
 </head>
 <body>
-    <h1>Phantasmal</h1>
-    
-    <!-- Input Bar -->
-    <input type="text" id="mysteryInput" placeholder="Enter something...">
-    
-    <!-- Response Text -->
-    <div id="response"></div>
-    
-    <!-- Discord Button (Transparent & Positioned on the Side) -->
-    <button id="discordButton">Join Discord</button>
-
+    <div class="container">
+        <h1 class="title">Phantasmal</h1>
+        <div class="input-container">
+            <input type="text" id="userInput" class="input-field" placeholder="Speak to the void...">
+            <div id="response" class="response-area"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
