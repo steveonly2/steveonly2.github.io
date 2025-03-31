@@ -1,8 +1,12 @@
+/* Import Phantasmal Font */
 @font-face {
     font-family: 'Phantasmal';
-    src: url('Phantasmal-Regular.woff2') format('woff2'); /* Using the compressed font */
+    src: url('Phantasmal-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
+/* General Reset */
 body {
     margin: 0;
     padding: 0;
@@ -11,73 +15,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('phantasmal.webp'); /* Optimized background */
+    background: url('phantasmal.gif') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
     overflow: hidden;
     position: relative;
+    font-family: 'Phantasmal', sans-serif;
 }
 
+/* Title Styling */
 h1 {
     position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 5%;
     font-size: 3em;
     color: white;
-    font-family: 'Phantasmal', sans-serif;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-}
-
-.text {
-    position: absolute;
-    font-size: 1.5em;
-    font-family: 'Phantasmal', sans-serif;
-    color: rgba(255, 255, 255, 0.8);
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    white-space: nowrap;
-    opacity: 0.8;
-    transition: transform 0.5s ease;
+    font-family: 'Phantasmal', sans-serif;
 }
 
 /* Input Bar */
 #mysteryInput {
     position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
+    bottom: 20%;
+    width: 50%;
     padding: 10px;
-    font-size: 1.2em;
+    font-size: 1.5em;
     font-family: 'Phantasmal', sans-serif;
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    background: transparent;
     border: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-    outline: none;
     text-align: center;
-    transition: background 0.3s ease;
-}
-
-#mysteryInput:focus {
-    background: rgba(0, 0, 0, 0.7);
+    outline: none;
 }
 
 /* Response Text */
-/* Response Text - Clearly visible */
 #response {
     position: absolute;
-    bottom: 5%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.5em;
     font-family: 'Phantasmal', sans-serif;
-    color: #00ff00; /* Bright green */
+    color: #00ff00; /* Bright Green */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
 }
 
+/* Discord Button - Transparent & Positioned on the Side */
 #discordButton {
     position: absolute;
     right: 2%;
@@ -87,15 +70,14 @@ h1 {
     font-size: 1.2em;
     font-family: 'Phantasmal', sans-serif;
     color: rgba(255, 255, 255, 0.8);
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease, color 0.3s ease;
 }
 
 #discordButton:hover {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
     transform: translateY(-52%);
 }
-
