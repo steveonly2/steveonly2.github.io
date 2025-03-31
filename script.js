@@ -5,11 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const floatingText = document.getElementById('floating-text');
     const mainContent = document.getElementById('main-content');
     const horrorMessage = document.getElementById('horror-message');
+    const creditsButton = document.getElementById('creditsButton');
+    const creditsScreen = document.getElementById('credits-screen');
+    const exitCredits = document.getElementById('exitCredits');
 
     // Create floating text elements
     function createFloatingText() {
         const texts = ["who am i?", "what am i?", "where am i?"];
-        const delay = Math.random() * 2000;
+        const delay = Math.random() * 5000;
         
         setTimeout(() => {
             const textElement = document.createElement('div');
@@ -19,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textElement.style.top = Math.random() * 100 + 'vh';
             textElement.style.animationDuration = (10 + Math.random() * 20) + 's';
             textElement.style.fontSize = (1.5 + Math.random() * 1.5) + 'rem';
-            textElement.style.opacity = 0.3 + Math.random() * 0.2;
+            textElement.style.opacity = 0.6 + Math.random() * 0.3;
             floatingText.appendChild(textElement);
             
             // Remove element after animation completes
@@ -35,6 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start creating floating text
     createFloatingText();
 
+    // Handle credits button click
+    creditsButton.addEventListener('click', function() {
+        creditsScreen.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    // Handle exit credits click
+    exitCredits.addEventListener('click', function() {
+        creditsScreen.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+
     inputField.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             const userInput = inputField.value.trim();
@@ -44,9 +59,15 @@ document.addEventListener('DOMContentLoaded', function() {
             responseArea.innerHTML = '<p class="thinking">Thinking...</p>';
             
             setTimeout(() => {
-                if (userInput.toLowerCase() === 'mnemos') {
+                // Convert input to lowercase and remove spaces for comparison
+                const normalizedInput = userInput.toLowerCase().replace(/\s+/g, '');
+                
+                if (normalizedInput === 'mnemos') {
                     // Trigger horror sequence
                     triggerHorrorSequence();
+                } else if (normalizedInput === 'latestnews' || normalizedInput === 'news') {
+                    // Show the latest news with image
+                    showLatestNews();
                 } else {
                     // Show error in binary
                     const binaryError = generateBinaryError();
@@ -64,6 +85,32 @@ document.addEventListener('DOMContentLoaded', function() {
             if (i > 0 && i % 8 === 0) binaryString += ' ';
         }
         return binaryString;
+    }
+
+    function showLatestNews() {
+        // Create a news container
+        responseArea.innerHTML = `
+            <div class="news-container">
+                <img src="./LatestInfo.png" alt="Latest Information" class="news-image">
+                <div class="news-info">
+                    <h3>Latest Information</h3>
+                    <p>Enter information below:</p>
+                    <textarea id="newsInfoInput" class="news-textarea" placeholder="Type your information here..."></textarea>
+                    <button id="saveNewsInfo" class="news-button">Save Information</button>
+                </div>
+            </div>
+        `;
+
+        // Add event listener to the save button
+        document.getElementById('saveNewsInfo').addEventListener('click', function() {
+            const newsInfo = document.getElementById('newsInfoInput').value.trim();
+            if (newsInfo) {
+                // Here you could save the information to localStorage or take other actions
+                alert('Information saved: ' + newsInfo);
+                // Or replace with a more stylized notification
+                // document.querySelector('.news-info').innerHTML += `<p class="info-saved">Information saved successfully!</p>`;
+            }
+        });
     }
 
     function triggerHorrorSequence() {
