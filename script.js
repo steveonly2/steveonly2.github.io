@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Create floating text elements
     function createFloatingText() {
         const texts = ["who am i?", "what am i?", "where am i?"];
-        const delay = Math.random() * 5000;
+        const delay = Math.random() * 2000;
         
         setTimeout(() => {
             const textElement = document.createElement('div');
