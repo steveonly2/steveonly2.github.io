@@ -85,8 +85,8 @@ body {
 #floating-text {
     position: absolute;
     font-family: 'Phantasmal', sans-serif;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 2rem;
     pointer-events: none;
     z-index: -1;
 }
@@ -94,7 +94,7 @@ body {
 .floating-text-element {
     position: absolute;
     animation: float 15s infinite linear;
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
 }
 
 @keyframes float {
@@ -103,10 +103,10 @@ body {
         opacity: 0;
     }
     10% {
-        opacity: 0.4;
+        opacity: 0.7;
     }
     90% {
-        opacity: 0.4;
+        opacity: 0.7;
     }
     100% {
         transform: translate(100vw, 100vh) rotate(360deg);
