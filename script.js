@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Convert input to lowercase and remove spaces for comparison
                 const normalizedInput = userInput.toLowerCase().replace(/\s+/g, '');
                 
-                if (normalizedInput === 'mnemos') {
+                if (normalizedInput === 'testfornoteab') {
                     // Trigger horror sequence
                     triggerHorrorSequence();
                 } else if (normalizedInput === 'latestnews' || normalizedInput === 'news') {
