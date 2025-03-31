@@ -1,75 +1,98 @@
-const texts = ["where am I?", "what am I?", "who am I?"];
-const positions = new Set();
-const maxTexts = 5; // Adjust this to control how many texts appear
+document.addEventListener('DOMContentLoaded', function() {
+    const inputField = document.getElementById('userInput');
+    const responseArea = document.getElementById('response');
+    const body = document.body;
+    const floatingText = document.getElementById('floating-text');
 
-function getRandomPosition() {
-    let x, y, key;
-    
-    for (let i = 0; i < 50; i++) { // Try 50 times to find a non-overlapping spot
-        x = Math.floor(Math.random() * 80) + 10; // Keep text inside safe margins
-        y = Math.floor(Math.random() * 80) + 10;
-        key = `${x},${y}`;
-
-        if (!positions.has(key)) {
-            positions.add(key);
-            return { x, y };
-        }
-    }
-
-    return { x: Math.random() * 80 + 10, y: Math.random() * 80 + 10 }; // Fallback
-}
-
-function createRandomText() {
-    const { x, y } = getRandomPosition();
-
-    const textElement = document.createElement("div");
-    textElement.classList.add("text");
-    textElement.innerText = texts[Math.floor(Math.random() * texts.length)];
-    textElement.style.left = x + "vw";
-    textElement.style.top = y + "vh";
-
-    // Smooth scaling effect
-    textElement.style.transform = "scale(0.9)";
-    setTimeout(() => textElement.style.transform = "scale(1)", 200);
-
-    document.body.appendChild(textElement);
-}
-
-// Generate texts on load
-window.onload = () => {
-    for (let i = 0; i < maxTexts; i++) {
-        createRandomText();
-    }
-};
-
-// Input field response
-document.getElementById("mysteryInput").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
+    // Create floating text elements
+    function createFloatingText() {
+        const texts = ["who am i?", "what am i?"];
+        const delay = Math.random() * 10000;
         
-        let inputText = this.value.trim().toLowerCase(); // Convert input to lowercase
-        let responseDiv = document.getElementById("response");
-        responseDiv.style.opacity = "1"; // Ensure it's visible
-
-        if (inputText === "mnemos") {
-            responseDiv.innerText = "Redirecting...";
+        setTimeout(() => {
+            const textElement = document.createElement('div');
+            textElement.className = 'floating-text-element';
+            textElement.textContent = texts[Math.floor(Math.random() * texts.length)];
+            textElement.style.left = Math.random() * 100 + 'vw';
+            textElement.style.top = Math.random() * 100 + 'vh';
+            textElement.style.animationDuration = (10 + Math.random() * 20) + 's';
+            textElement.style.fontSize = (1 + Math.random() * 2) + 'rem';
+            textElement.style.opacity = Math.random() * 0.3;
+            floatingText.appendChild(textElement);
+            
+            // Remove element after animation completes
             setTimeout(() => {
-                window.location.href = "https://www.youtube.com/watch?v=vRDWpI5lmFk&list=PLrHNvh0ZGPqIMpz2OWJQhfzHGlq0ClGdl";
-            }, 2000);
-        } else {
-            responseDiv.innerText = "Thinking..";
-            setTimeout(() => {
-                responseDiv.innerText = 
-                    "01110111 01101000 01100001 01110100 00100000 01100100 01101111 00100000 01111001 01101111 01110101 00100000 01101101 01100101 01100001 01101110";
-            }, 2000);
-        }
-
-        this.value = ""; // Clear input after pressing Enter
+                textElement.remove();
+            }, parseFloat(textElement.style.animationDuration) * 1000);
+            
+            // Create next text
+            createFloatingText();
+        }, delay);
     }
-};
 
-document.getElementById("discordButton").addEventListener("click", function() {
-    window.open("https://discord.gg/ZvueKkNh", "_blank"); // Opens in new tab
+    // Start creating floating text
+    createFloatingText();
+
+    // Rest of your existing code...
+    inputField.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const userInput = inputField.value.trim();
+            inputField.value = '';
+            
+            // Show thinking message
+            responseArea.innerHTML = '<p class="thinking">Thinking...</p>';
+            
+            setTimeout(() => {
+                if (userInput.toLowerCase() === 'mnemos') {
+                    // Trigger horror sequence
+                    triggerHorrorSequence();
+                } else {
+                    // Show error in binary
+                    const binaryError = generateBinaryError();
+                    responseArea.innerHTML = `<p class="error">${binaryError}</p>`;
+                }
+            }, 1500);
+        }
+    });
+
+    function generateBinaryError() {
+        const binaryLength = Math.floor(Math.random() * 50) + 30;
+        let binaryString = '';
+        for (let i = 0; i < binaryLength; i++) {
+            binaryString += Math.random() > 0.5 ? '1' : '0';
+            if (i > 0 && i % 8 === 0) binaryString += ' ';
+        }
+        return binaryString;
+    }
+
+    function triggerHorrorSequence() {
+        // Shake the website
+        body.classList.add('shake');
+        
+        // Change background to white after shake
+        setTimeout(() => {
+            body.style.background = 'white';
+            body.classList.remove('shake');
+            
+            // Type horror message
+            responseArea.innerHTML = '<p class="horror-text"></p>';
+            const horrorText = responseArea.querySelector('.horror-text');
+            const message = "How Did You Get My Name...";
+            let i = 0;
+            
+            const typing = setInterval(() => {
+                if (i < message.length) {
+                    horrorText.textContent += message.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                    
+                    // Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'https://youtu.be/0ynM7936D8g?si=GnSg9D4tELjiSLlZ';
+                    }, 2000);
+                }
+            }, 100);
+        }, 500);
+    }
 });
-
-
