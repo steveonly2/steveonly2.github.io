@@ -66,6 +66,10 @@ document.getElementById("mysteryInput").addEventListener("keypress", function(ev
 
         this.value = ""; // Clear input after pressing Enter
     }
+};
+
+document.getElementById("discordButton").addEventListener("click", function() {
+    window.open("https://discord.gg/ZvueKkNh", "_blank"); // Opens in new tab
 });
 
 
