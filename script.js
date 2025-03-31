@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Redirect after delay
                     setTimeout(() => {
-                        window.location.href = 'https://youtu.be/0ynM7936D8g?si=GnSg9D4tELjiSLlZ';
+                        window.location.href = 'https://youtu.be/E2si0HBAtB4?si=jtkQdiE2NqrVqTHB';
                     }, 2000);
                 }
             }, 100);
