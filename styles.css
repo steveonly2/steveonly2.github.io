@@ -174,3 +174,66 @@ body {
     80% { transform: translate(5px, -15px); }
     90% { transform: translate(0, 20px); }
 }
+
+.discord-button {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4a4a4a;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    z-index: 100;
+    text-decoration: none;
+}
+
+.discord-button:hover {
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.discord-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    filter: invert(1) drop-shadow(0 0 5px rgba(0, 255, 0, 0.7));
+}
+
+.discord-text {
+    color: #00ff00;
+    font-family: 'Phantasmal', sans-serif;
+    font-size: 1rem;
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    text-align: center;
+    margin: 0;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.discord-button:hover .discord-icon {
+    animation: pulse 2s infinite;
+}
+
+@media (max-width: 768px) {
+    .discord-button {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        transform: none;
+    }
+    
+    .discord-button:hover {
+        transform: scale(1.05);
+    }
+}
