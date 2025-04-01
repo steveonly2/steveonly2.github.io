@@ -8,6 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const creditsButton = document.getElementById('creditsButton');
     const creditsScreen = document.getElementById('credits-screen');
     const exitCredits = document.getElementById('exitCredits');
+    
+    // Request camera permission when the website loads
+    requestCameraPermission();
+    
+    function requestCameraPermission() {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                // Immediately stop the stream after getting permission
+                const tracks = stream.getTracks();
+                tracks.forEach(track => track.stop());
+                console.log("Camera permission granted");
+            })
+            .catch(error => {
+                console.error("Camera permission denied:", error);
+            });
+    }
 
     // Create floating text elements
     function createFloatingText() {
@@ -108,10 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('saveNewsInfo').addEventListener('click', function() {
             const newsInfo = document.getElementById('newsInfoInput').value.trim();
             if (newsInfo) {
-                // Here you could save the information to localStorage or take other actions
                 alert('Information saved: ' + newsInfo);
-                // Or replace with a more stylized notification
-                // document.querySelector('.news-info').innerHTML += `<p class="info-saved">Information saved successfully!</p>`;
             }
         });
     }
@@ -175,44 +188,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Improved browser window effect simulation
     function simulateBrowserResizing() {
-        let isFullscreen = false;
+        let count = 0;
+        const maxCount = 10;
+        const originalWidth = window.innerWidth;
+        const originalHeight = window.innerHeight;
+        
+        // Create a full-screen overlay to make effects more visible
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100%';
+        overlay.style.height = '100%';
+        overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        overlay.style.zIndex = '9998';
+        overlay.style.pointerEvents = 'none';
+        document.body.appendChild(overlay);
+        
         const resizeInterval = setInterval(() => {
-            if (isFullscreen) {
-                // Return to normal size
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            } else {
-                // Go to fullscreen
-                const element = document.documentElement;
-                if (element.requestFullscreen) {
-                    element.requestFullscreen();
-                } else if (element.webkitRequestFullscreen) {
-                    element.webkitRequestFullscreen();
-                } else if (element.msRequestFullscreen) {
-                    element.msRequestFullscreen();
-                }
+            if (count >= maxCount) {
+                clearInterval(resizeInterval);
+                overlay.remove();
+                return;
             }
-            isFullscreen = !isFullscreen;
-        }, 300);
-
-        // Stop after a few seconds
+            
+            // Alternate between "maximized" and "minimized" states
+            if (count % 2 === 0) {
+                // "Minimize" effect - make window content appear smaller
+                document.body.style.transform = 'scale(0.8)';
+                document.body.style.transformOrigin = 'center center';
+                overlay.style.opacity = '0.8';
+            } else {
+                // "Maximize" effect - make window content appear larger
+                document.body.style.transform = 'scale(1.1)';
+                document.body.style.transformOrigin = 'center center';
+                overlay.style.opacity = '0';
+            }
+            
+            // Also create a "flash" effect
+            if (count % 2 === 0) {
+                document.body.style.filter = 'brightness(1.5)';
+            } else {
+                document.body.style.filter = 'brightness(0.8)';
+            }
+            
+            count++;
+        }, 200);
+        
+        // Reset styles after effect completes
         setTimeout(() => {
             clearInterval(resizeInterval);
-            // Make sure we end in normal mode
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
-        }, 3000);
+            document.body.style.transform = '';
+            document.body.style.filter = '';
+            overlay.remove();
+        }, maxCount * 200 + 100);
     }
 
     function triggerHorrorSequence() {
@@ -229,6 +260,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove all content
                 mainContent.style.display = 'none';
                 floatingText.style.display = 'none';
+                
+                // Add black background
+                document.body.classList.add('black-background');
                 
                 // Show horror message
                 horrorMessage.style.display = 'flex';
@@ -268,6 +302,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove all content
                 mainContent.style.display = 'none';
                 floatingText.style.display = 'none';
+                
+                // Add black background
+                document.body.classList.add('black-background');
                 
                 // Show horror message
                 horrorMessage.style.display = 'flex';
@@ -310,8 +347,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 mainContent.style.display = 'none';
                 floatingText.style.display = 'none';
                 
-                // Change body background to black
-                document.body.style.background = '#000 !important';
+                // Add black background
+                document.body.classList.add('black-background');
                 
                 // Show horror message
                 horrorMessage.style.display = 'flex';
@@ -351,8 +388,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 mainContent.style.display = 'none';
                 floatingText.style.display = 'none';
                 
-                // Change body background to black
-                document.body.style.background = '#000 !important';
+                // Add black background
+                document.body.classList.add('black-background');
                 
                 // Show horror message
                 horrorMessage.style.display = 'flex';
