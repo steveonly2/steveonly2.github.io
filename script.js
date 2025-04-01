@@ -8,6 +8,142 @@ document.addEventListener('DOMContentLoaded', function() {
     const creditsButton = document.getElementById('creditsButton');
     const creditsScreen = document.getElementById('credits-screen');
     const exitCredits = document.getElementById('exitCredits');
+
+    const supportButton = document.getElementById('supportButton');
+    const supportScreen = document.getElementById('support-screen');
+    const exitSupport = document.getElementById('exitSupport');
+    const donateMoney = document.getElementById('donateMoney');
+    const donateRobux = document.getElementById('donateRobux');
+    const donateNitro = document.getElementById('donateNitro');
+    const boostServer = document.getElementById('boostServer');
+    const robuxOptions = document.getElementById('robux-options');
+    const backFromRobux = document.getElementById('backFromRobux');
+    const contactMessage = document.getElementById('contact-message');
+    const closeMessage = document.getElementById('closeMessage');
+    
+    // Robux options
+    const robux100 = document.getElementById('robux100');
+    const robux500 = document.getElementById('robux500');
+    const robux1000 = document.getElementById('robux1000');
+    const robux5000 = document.getElementById('robux5000');
+    const robux10000 = document.getElementById('robux10000');
+    
+    // Open support screen
+    supportButton.addEventListener('click', function() {
+        supportScreen.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+    
+    // Exit support screen
+    exitSupport.addEventListener('click', function() {
+        supportScreen.style.display = 'none';
+        robuxOptions.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    });
+    
+    // Donate Money option
+    donateMoney.addEventListener('click', function() {
+        // Show contact message
+        contactMessage.style.display = 'flex';
+    });
+    
+    // Donate Robux option
+    donateRobux.addEventListener('click', function() {
+        // Show Robux options
+        robuxOptions.style.display = 'flex';
+        document.querySelector('.support-container').style.display = 'none';
+    });
+    
+    // Back from Robux options
+    backFromRobux.addEventListener('click', function() {
+        robuxOptions.style.display = 'none';
+        document.querySelector('.support-container').style.display = 'flex';
+    });
+    
+    // Donate Nitro option
+    donateNitro.addEventListener('click', function() {
+        // Show contact message
+        contactMessage.style.display = 'flex';
+    });
+    
+    // Boost Server option
+    boostServer.addEventListener('click', function() {
+        // Redirect to Discord
+        window.location.href = 'https://discord.gg/6cgTD9GgFZ';
+    });
+    
+    // Robux 100 option
+    robux100.addEventListener('click', function() {
+        window.location.href = 'https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it';
+    });
+    
+    // Robux 500 option
+    robux500.addEventListener('click', function() {
+        window.location.href = 'https://www.roblox.com/game-pass/975233980/491';
+    });
+    
+    // Robux 1000 option
+    robux1000.addEventListener('click', function() {
+        window.location.href = 'https://www.roblox.com/game-pass/953587098/1000-tysm';
+    });
+    
+    // Robux 5000 option
+    robux5000.addEventListener('click', function() {
+        // Redirect to Discord
+        window.location.href = 'https://discord.gg/6cgTD9GgFZ';
+    });
+    
+    // Robux 10000 option
+    robux10000.addEventListener('click', function() {
+        // Redirect to Discord
+        window.location.href = 'https://discord.gg/6cgTD9GgFZ';
+    });
+    
+    // Close message
+    closeMessage.addEventListener('click', function() {
+        contactMessage.style.display = 'none';
+    });
+    
+    // Add random glitches to support options
+    const supportOptions = document.querySelectorAll('.support-option');
+    
+    function addRandomGlitch() {
+        const randomOption = supportOptions[Math.floor(Math.random() * supportOptions.length)];
+        randomOption.classList.add('glitch-effect');
+        
+        setTimeout(() => {
+            randomOption.classList.remove('glitch-effect');
+        }, 200);
+        
+        // Schedule next glitch
+        setTimeout(addRandomGlitch, Math.random() * 5000 + 2000);
+    }
+    
+    // Start random glitches
+    setTimeout(addRandomGlitch, 3000);
+    
+    // Add creepy hover sounds
+    supportOptions.forEach(option => {
+        option.addEventListener('mouseenter', function() {
+            playCreepySound();
+        });
+    });
+    
+    function playCreepySound() {
+        // Create audio element
+        const audio = new Audio();
+        // Random selection of creepy sounds
+        const sounds = [
+            'data:audio/mp3;base64,SUQzAwAAAAABOlRJVDIAAAAZAAADQ3JlZXB5IEhvdmVyIFNvdW5kIEVmZmVjdA==',
+        ];
+        audio.src = sounds[0];
+        audio.volume = 0.2;
+        audio.play().catch(e => {
+            // Silent catch - browsers may block autoplay
+            console.log("Sound blocked by browser policy");
+        });
+    }
+});
     
     // Request camera permission when the website loads
     requestCameraPermission();
