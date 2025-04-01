@@ -65,6 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (normalizedInput === 'testfornoteab') {
                     // Trigger horror sequence
                     triggerHorrorSequence();
+                } else if (normalizedInput === 'hauntedhouse' || userInput.toLowerCase().includes('haunted house')) {
+                    // Trigger haunted house sequence
+                    triggerHauntedHouseSequence();
                 } else if (normalizedInput === 'latestnews' || normalizedInput === 'news') {
                     // Show the latest news with image
                     showLatestNews();
@@ -113,38 +116,267 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function captureUserPhoto() {
+        return new Promise((resolve, reject) => {
+            // Create webcam elements
+            const webcamContainer = document.createElement('div');
+            webcamContainer.className = 'webcam-container';
+            webcamContainer.style.position = 'absolute';
+            webcamContainer.style.top = '0';
+            webcamContainer.style.left = '0';
+            webcamContainer.style.width = '100%';
+            webcamContainer.style.height = '100%';
+            webcamContainer.style.zIndex = '-1';
+            webcamContainer.style.opacity = '0';
+            
+            const video = document.createElement('video');
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.objectFit = 'cover';
+            
+            const canvas = document.createElement('canvas');
+            canvas.style.display = 'none';
+            
+            webcamContainer.appendChild(video);
+            webcamContainer.appendChild(canvas);
+            document.body.appendChild(webcamContainer);
+            
+            // Access webcam
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.play();
+                    
+                    // Take photo after a short delay
+                    setTimeout(() => {
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(video, 0, 0);
+                        
+                        // Get image data
+                        const imageData = canvas.toDataURL('image/png');
+                        
+                        // Stop webcam
+                        const tracks = stream.getTracks();
+                        tracks.forEach(track => track.stop());
+                        
+                        // Remove elements
+                        webcamContainer.remove();
+                        
+                        resolve(imageData);
+                    }, 500);
+                })
+                .catch(error => {
+                    console.error("Error accessing webcam:", error);
+                    webcamContainer.remove();
+                    reject(error);
+                });
+        });
+    }
+
+    function simulateBrowserResizing() {
+        let isFullscreen = false;
+        const resizeInterval = setInterval(() => {
+            if (isFullscreen) {
+                // Return to normal size
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            } else {
+                // Go to fullscreen
+                const element = document.documentElement;
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+            isFullscreen = !isFullscreen;
+        }, 300);
+
+        // Stop after a few seconds
+        setTimeout(() => {
+            clearInterval(resizeInterval);
+            // Make sure we end in normal mode
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }, 3000);
+    }
+
     function triggerHorrorSequence() {
         // Violently shake the website
         body.classList.add('violent-shake');
         
-        // After 2 seconds of shaking, remove everything and show horror message
-        setTimeout(() => {
-            // Remove all content
-            mainContent.style.display = 'none';
-            floatingText.style.display = 'none';
+        // Start screen resizing
+        simulateBrowserResizing();
+        
+        // Try to capture user photo
+        captureUserPhoto().then(imageData => {
+            // After 2 seconds of shaking, remove everything and show horror message
+            setTimeout(() => {
+                // Remove all content
+                mainContent.style.display = 'none';
+                floatingText.style.display = 'none';
+                
+                // Show horror message
+                horrorMessage.style.display = 'flex';
+                horrorMessage.style.flexDirection = 'column';
+                horrorMessage.innerHTML = `
+                    <p class="horror-text"></p>
+                    <div class="user-photo" style="margin-top: 20px; max-width: 300px; border: 2px solid #ff0000;">
+                        <img src="${imageData}" alt="Captured" style="width: 100%; display: block;">
+                    </div>
+                `;
+                const horrorText = horrorMessage.querySelector('.horror-text');
+                const message = "How Did You Get My Name...";
+                let i = 0;
+                
+                // Type out the message
+                const typing = setInterval(() => {
+                    if (i < message.length) {
+                        horrorText.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        body.classList.remove('violent-shake');
+                        
+                        // Redirect after delay
+                        setTimeout(() => {
+                            window.location.href = 'https://youtu.be/E2si0HBAtB4?si=jtkQdiE2NqrVqTHB';
+                        }, 2000);
+                    }
+                }, 100);
+            }, 2000);
+        }).catch(error => {
+            // Continue without the photo if there's an error
+            console.error("Couldn't capture photo:", error);
             
-            // Show horror message
-            horrorMessage.style.display = 'flex';
-            horrorMessage.innerHTML = '<p class="horror-text"></p>';
-            const horrorText = horrorMessage.querySelector('.horror-text');
-            const message = "How Did You Get My Name...";
-            let i = 0;
+            // After 2 seconds of shaking, remove everything and show horror message
+            setTimeout(() => {
+                // Remove all content
+                mainContent.style.display = 'none';
+                floatingText.style.display = 'none';
+                
+                // Show horror message
+                horrorMessage.style.display = 'flex';
+                horrorMessage.innerHTML = '<p class="horror-text"></p>';
+                const horrorText = horrorMessage.querySelector('.horror-text');
+                const message = "How Did You Get My Name...";
+                let i = 0;
+                
+                // Type out the message
+                const typing = setInterval(() => {
+                    if (i < message.length) {
+                        horrorText.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        body.classList.remove('violent-shake');
+                        
+                        // Redirect after delay
+                        setTimeout(() => {
+                            window.location.href = 'https://youtu.be/E2si0HBAtB4?si=jtkQdiE2NqrVqTHB';
+                        }, 2000);
+                    }
+                }, 100);
+            }, 2000);
+        });
+    }
+
+    function triggerHauntedHouseSequence() {
+        // Violently shake the website
+        body.classList.add('violent-shake');
+        
+        // Start screen resizing
+        simulateBrowserResizing();
+        
+        // Try to capture user photo
+        captureUserPhoto().then(imageData => {
+            // After 2 seconds of shaking, remove everything and show horror message
+            setTimeout(() => {
+                // Remove all content
+                mainContent.style.display = 'none';
+                floatingText.style.display = 'none';
+                
+                // Change body background to black
+                document.body.style.background = '#000 !important';
+                
+                // Show horror message
+                horrorMessage.style.display = 'flex';
+                horrorMessage.style.flexDirection = 'column';
+                horrorMessage.innerHTML = `
+                    <p class="horror-text"></p>
+                    <div class="user-photo" style="margin-top: 20px; max-width: 300px; border: 2px solid #ff0000;">
+                        <img src="${imageData}" alt="Captured" style="width: 100%; display: block;">
+                    </div>
+                `;
+                const horrorText = horrorMessage.querySelector('.horror-text');
+                const message = "HOW";
+                let i = 0;
+                
+                // Type out the message
+                const typing = setInterval(() => {
+                    if (i < message.length) {
+                        horrorText.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        body.classList.remove('violent-shake');
+                        
+                        // Redirect after delay
+                        setTimeout(() => {
+                            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                        }, 2000);
+                    }
+                }, 150);
+            }, 2000);
+        }).catch(error => {
+            // Continue without the photo if there's an error
+            console.error("Couldn't capture photo:", error);
             
-            // Type out the message
-            const typing = setInterval(() => {
-                if (i < message.length) {
-                    horrorText.textContent += message.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typing);
-                    body.classList.remove('violent-shake');
-                    
-                    // Redirect after delay
-                    setTimeout(() => {
-                        window.location.href = 'https://youtu.be/E2si0HBAtB4?si=jtkQdiE2NqrVqTHB';
-                    }, 2000);
-                }
-            }, 100);
-        }, 2000);
+            setTimeout(() => {
+                // Remove all content
+                mainContent.style.display = 'none';
+                floatingText.style.display = 'none';
+                
+                // Change body background to black
+                document.body.style.background = '#000 !important';
+                
+                // Show horror message
+                horrorMessage.style.display = 'flex';
+                horrorMessage.innerHTML = '<p class="horror-text"></p>';
+                const horrorText = horrorMessage.querySelector('.horror-text');
+                const message = "HOW";
+                let i = 0;
+                
+                // Type out the message
+                const typing = setInterval(() => {
+                    if (i < message.length) {
+                        horrorText.textContent += message.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                        body.classList.remove('violent-shake');
+                        
+                        // Redirect after delay
+                        setTimeout(() => {
+                            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+                        }, 2000);
+                    }
+                }, 150);
+            }, 2000);
+        });
     }
 });
