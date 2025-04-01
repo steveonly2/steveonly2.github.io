@@ -398,3 +398,29 @@ body {
         transform: scale(1.05);
     }
 }
+
+/* Add this to your styles.css file */
+
+.black-background {
+    background: #000 !important;
+    background-image: none !important;
+}
+
+/* Ensure the horror message takes priority */
+#horror-message {
+    z-index: 9999;
+}
+
+/* Updated styling for user photo */
+.user-photo {
+    margin-top: 20px;
+    max-width: 300px;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.user-photo img {
+    width: 100%;
+    display: block;
+}
