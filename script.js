@@ -41,6 +41,33 @@ document.addEventListener('DOMContentLoaded', function() {
     webcamContainer.style.display = 'none';
     document.body.appendChild(webcamContainer);
     
+    // Security enhancements
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+            (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+            (e.ctrlKey && e.key === 'U')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // Obfuscate sensitive data
+    const sensitiveData = {
+        discordLink: atob('aHR0cHM6Ly9kaXNjb3JkLmdnLzZjZ1REOUdnRlo='),
+        robloxLinks: [
+            atob('aHR0cHM6Ly93d3cucm9ibG94LmNvbS9nYW1lLXBhc3MvNzMzNzAzOTUzL25haC1icm8tcmVhbGx5LWRvaW5nLWl0'),
+            atob('aHR0cHM6Ly93d3cucm9ibG94LmNvbS9nYW1lLXBhc3MvOTc1MjMzOTgwLzQ5MQ=='),
+            atob('aHR0cHM6Ly93d3cucm9ibG94LmNvbS9nYW1lLXBhc3MvOTUzNTg3MDk4LzEwMDAtdHlzbQ==')
+        ]
+    };
+    
     // Safe click listener
     function addClickListener(element, callback) {
         if (element) {
@@ -86,28 +113,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     addClickListener(boostServer, function() {
-        window.open('https://discord.gg/6cgTD9GgFZ', '_blank');
+        window.open(sensitiveData.discordLink, '_blank');
     });
     
     // Robux options
     addClickListener(robux100, function() {
-        window.open('https://www.roblox.com/game-pass/733703953/nah-bro-really-doing-it', '_blank');
+        window.open(sensitiveData.robloxLinks[0], '_blank');
     });
     
     addClickListener(robux500, function() {
-        window.open('https://www.roblox.com/game-pass/975233980/491', '_blank');
+        window.open(sensitiveData.robloxLinks[1], '_blank');
     });
     
     addClickListener(robux1000, function() {
-        window.open('https://www.roblox.com/game-pass/953587098/1000-tysm', '_blank');
+        window.open(sensitiveData.robloxLinks[2], '_blank');
     });
     
     addClickListener(robux5000, function() {
-        window.open('https://discord.gg/6cgTD9GgFZ', '_blank');
+        window.open(sensitiveData.discordLink, '_blank');
     });
     
     addClickListener(robux10000, function() {
-        window.open('https://discord.gg/6cgTD9GgFZ', '_blank');
+        window.open(sensitiveData.discordLink, '_blank');
     });
     
     // Close message
@@ -353,6 +380,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function triggerHorrorSequence() {
         if (!body || !mainContent || !floatingText || !horrorMessage) return;
         
+        // Store original styles for restoration
+        const originalBodyStyles = {
+            transform: document.body.style.transform,
+            filter: document.body.style.filter,
+            transformOrigin: document.body.style.transformOrigin
+        };
+        
         body.classList.add('violent-shake');
         simulateBrowserResizing();
         
@@ -381,13 +415,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.open('https://youtu.be/E2si0HBAtB4?si=jtkQdiE2NqrVqTHB', '_blank');
                         
                         setTimeout(() => {
+                            // Properly reset all styles and elements
                             horrorMessage.style.display = 'none';
                             if (mainContent) mainContent.style.display = 'block';
                             if (floatingText) floatingText.style.display = 'block';
                             document.body.classList.remove('black-background');
-                            document.body.style.transform = '';
-                            document.body.style.transformOrigin = '';
-                            document.body.style.filter = '';
+                            
+                            // Reset all transformations and styles
+                            document.body.style.transform = originalBodyStyles.transform;
+                            document.body.style.filter = originalBodyStyles.filter;
+                            document.body.style.transformOrigin = originalBodyStyles.transformOrigin;
+                            
+                            // Clear any thinking message
+                            if (responseArea) {
+                                responseArea.innerHTML = '';
+                            }
                         }, 2000);
                     }, 2000);
                 }
@@ -397,6 +439,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function triggerHauntedHouseSequence() {
         if (!body || !mainContent || !floatingText || !horrorMessage) return;
+        
+        // Store original styles for restoration
+        const originalBodyStyles = {
+            transform: document.body.style.transform,
+            filter: document.body.style.filter,
+            transformOrigin: document.body.style.transformOrigin
+        };
         
         body.classList.add('violent-shake');
         simulateBrowserResizing();
@@ -425,13 +474,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
                         
                         setTimeout(() => {
+                            // Properly reset all styles and elements
                             horrorMessage.style.display = 'none';
                             if (mainContent) mainContent.style.display = 'block';
                             if (floatingText) floatingText.style.display = 'block';
                             document.body.classList.remove('black-background');
-                            document.body.style.transform = '';
-                            document.body.style.transformOrigin = '';
-                            document.body.style.filter = '';
+                            
+                            // Reset all transformations and styles
+                            document.body.style.transform = originalBodyStyles.transform;
+                            document.body.style.filter = originalBodyStyles.filter;
+                            document.body.style.transformOrigin = originalBodyStyles.transformOrigin;
+                            
+                            // Clear any thinking message
+                            if (responseArea) {
+                                responseArea.innerHTML = '';
+                            }
                         }, 2000);
                     }, 2000);
                 }
